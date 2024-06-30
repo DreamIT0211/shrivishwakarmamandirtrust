@@ -1,0 +1,36 @@
+/* slick-styles.css */
+
+.h-screen {
+    height: 100vh;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .absolute {
+    position: absolute;
+  }
+  
+  .inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+.hero-slider {
+    perspective: 1000px;
+  }
+  
+  .hero-slider.animated-div {
+    transform-style: preserve-3d;
+  }
