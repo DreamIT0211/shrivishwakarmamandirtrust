@@ -5,9 +5,10 @@ import { useLocation } from "react-router-dom";
 import { navLinks } from "../../constants";
 import style from "../../style";
 import { logo } from "../../assets";
+import classNames from "classnames";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Menu,
   MenuHandler,
@@ -15,7 +16,10 @@ import {
   MenuItem,
   IconButton,
 } from "@material-tailwind/react";
-import { ChevronDownIcon, Bars2Icon } from "@heroicons/react/24/solid";
+import {
+  ChevronDownIcon,
+  Bars3BottomRightIcon,
+} from "@heroicons/react/24/solid";
 
 // nav list component
 function NavList({ selectedItem, handleSelect }) {
@@ -61,7 +65,7 @@ function NavList({ selectedItem, handleSelect }) {
                       as="a"
                       href={`${dropdownItem.id}`}
                       variant="small"
-                      className={`font-normal ${style.colors.navbartext}`}
+                      className={`font-normal ${style.colors.navbartext} hover:text-amber-800`}
                       onClick={() => handleSelect(dropdownItem.id)}
                     >
                       {dropdownItem.title}
@@ -103,6 +107,7 @@ function NavList({ selectedItem, handleSelect }) {
 const StickyNavbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
 
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
@@ -124,13 +129,18 @@ const StickyNavbar = () => {
       }
     }
   }, [location]);
-  
 
   useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setIsNavOpen(false)
-    );
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      if (window.innerWidth >= 960) {
+        setIsNavOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
@@ -143,9 +153,17 @@ const StickyNavbar = () => {
         />
       </div>
       <Navbar
-        className={`w-full max-w-full rounded-none -mt-16 lg:-mt-20 z-30 border-transparent p-3 lg:pl-2 ${style.colors.navbarbg}`}
+        className={classNames(
+          `w-full max-w-full -mt-16 lg:-mt-20 z-30 border-transparent p-3 lg:pl-2 ${style.colors.navbarbg}`,
+          {
+            "rounded-none": windowWidth >= 960 || !isNavOpen,
+            "rounded-xl": windowWidth < 960 && isNavOpen,
+          }
+        )}
       >
-        <div className={`flex items-center justify-end ${style.colors.navbartext}`}>
+        <div
+          className={`flex items-center justify-end ${style.colors.navbartext}`}
+        >
           <div className="hidden lg:block">
             <NavList selectedItem={selectedItem} handleSelect={handleSelect} />
           </div>
@@ -155,12 +173,18 @@ const StickyNavbar = () => {
             onClick={toggleIsNavOpen}
             className={`ml-auto mr-2 lg:hidden ${style.colors.navbartext}`}
           >
-            <Bars2Icon className="h-6 w-6" />
+            <Bars3BottomRightIcon className="h-6 w-6 text-amber-900" />
           </IconButton>
         </div>
-        <MobileNav open={isNavOpen} className="overflow-scroll">
+        <Collapse
+          open={isNavOpen}
+          className={classNames(
+            "overflow-scroll transition-all duration-300 ease-in-out",
+            { "mt-6": isNavOpen }
+          )}
+        >
           <NavList selectedItem={selectedItem} handleSelect={handleSelect} />
-        </MobileNav>
+        </Collapse>
       </Navbar>
     </div>
   );

@@ -126,9 +126,9 @@ const Signin = () => {
             </Link>
           </Typography>
           <Typography variant="small" className="mt-2 flex justify-center">
-            <Link to="/forgot-password" className="text-blue-500 hover:underline">
+            {/* <Link to="/forgot-password" className="text-blue-500 hover:underline">
               Forgot your password?
-            </Link>
+            </Link> */}
           </Typography>
         </CardFooter>
       </Card>

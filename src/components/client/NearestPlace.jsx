@@ -21,7 +21,7 @@ const NearestPlace = () => {
   ];
 
   return (
-    <div className="bg-yellow-100 p-5 sm:p-10 select-none">
+    <div className="bg-yellow-100 p-5 sm:p-10 select-none hover:text-amber-900 transition ease-in-out duration-300">
       <h2 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8">
         Visiting Places Near Vishwakarma Temple
       </h2>
@@ -29,7 +29,7 @@ const NearestPlace = () => {
         {places.map((place, index) => (
           <div
             key={index}
-            className="max-w-xs w-full sm:w-1/2 lg:w-1/3 rounded-md overflow-hidden shadow-lg hover:shadow-2xl bg-amber-100 m-2 sm:m-0"
+            className="max-w-xs w-full sm:w-1/2 lg:w-1/3 rounded-md overflow-hidden shadow-lg hover:shadow-2xl bg-amber-100 m-2 sm:m-0 text-black hover:text-amber-900 transition ease-in-out duration-300"
           >
             <img
               className="w-full h-48 object-cover"

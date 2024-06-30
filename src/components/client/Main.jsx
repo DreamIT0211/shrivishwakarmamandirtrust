@@ -54,6 +54,9 @@ const Main = () => {
           <StickyNavbar />
         </div>
         <MainContent />
+        <div className="bottom-0 w-full z-50">
+          <FooterWithSocialLinks />
+        </div>
       </div>
    
   );

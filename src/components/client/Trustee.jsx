@@ -31,7 +31,7 @@ const Trustees = () => {
   }
 
   return (
-    <div>
+    <div className="relative h-screen">
       <div className="relative mb-4 overflow-hidden">
         <img
           src={dakor}

@@ -130,9 +130,6 @@ const ContactUs = () => {
       </div>
       <div className="mt-3">
         <TempleMap />
-        <div className="mt-3">
-          <FooterWithSocialLinks />
-        </div>
       </div>
     </>
   );

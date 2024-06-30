@@ -7,10 +7,10 @@ export const navLinks = [
     id: "features",
     title: "Vishwakarma Mandir",
     dropdown: [
-      {
-        id: "room-booking",
-        title: "Room Booking",
-      },
+      // {
+      //   id: "room-booking",
+      //   title: "Room Booking",
+      // },
       {
         id: "trustee",
         title: "Trustee",

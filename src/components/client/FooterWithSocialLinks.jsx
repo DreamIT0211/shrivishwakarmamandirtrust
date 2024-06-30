@@ -40,10 +40,10 @@ const currentYear = new Date().getFullYear();
 
 export function FooterWithSocialLinks() {
   return (
-    <footer className={`relative w-full ${style.colors.navbarbg} pt-4 ${style.colors.navbartext}`}>
+    <footer className={`relative w-full ${style.colors.navbarbg} pt-4 ${style.colors.navbartext} mt-4`}>
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
-          <Typography variant="h4" className="mb-6">
+          <Typography variant="h4"  className="mb-6 hover:text-amber-900 transition ease-in-out duration-300">
             Shri Vishwakarma Mandir Trust, Dakor
           </Typography>
           <div className="grid grid-cols-3 justify-between gap-4">
@@ -52,17 +52,17 @@ export function FooterWithSocialLinks() {
                 <Typography
                   variant="small"
                   color="black"
-                  className="mb-3 font-medium opacity-40"
+                  className="mb-3 font-medium opacity-60"
                 >
                   {title}
                 </Typography>
                 {items.map((item, index) => (
-                  <li key={index} className="flex items-center hover:text-blue-gray-900">
+                  <li key={index} className="flex items-center hover:text-amber-900">
                     {item.icon && <span className="mr-2">{item.icon}</span>}
                     <Typography
                       as="a"
                       href={item.id}
-                      className="py-1.5 font-normal transition-colors ${style.colors.navbartext} hover:text-blue-gray-900"
+                      className="py-1.5 font-normal transition-colors ${style.colors.navbartext} hover:text-amber-900"
                     >
                       {item.text}
                     </Typography>

@@ -15,7 +15,6 @@ import {
   Card,
 } from "@material-tailwind/react";
 import {
-  Cog6ToothIcon,
   PowerIcon,
   HomeModernIcon,
   UsersIcon,

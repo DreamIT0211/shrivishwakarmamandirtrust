@@ -49,7 +49,7 @@ const EventGallery = () => {
           className="w-full h-24 object-cover rounded-xl filter blur-sm"
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
-          <h1 className="text-4xl font-bold mb-2">Event Gallary</h1>
+          <h1 className="text-4xl font-bold mb-2">Events</h1>
           {/* <p className="text-lg font-medium">Experience the divine</p> */}
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>

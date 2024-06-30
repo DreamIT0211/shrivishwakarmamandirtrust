@@ -1,23 +1,36 @@
 body {
-    background-color: rgb(245, 217, 198);
-  }
+  background-color: rgb(245, 217, 198);
+}
 
 /* Custom scrollbar styles */
 ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+  border-radius: 10px; /* Radius of the scrollbar track */
+}
+
+@keyframes scrollEffect {
+  0% {
+    background: rgb(180, 97, 2);
   }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Background of the scrollbar track */
-    border-radius: 10px; /* Radius of the scrollbar track */
+  50% {
+    background: rgb(197, 62, 4);
   }
-  
-  ::-webkit-scrollbar-thumb {
-    background: rgb(180, 97, 2); /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Radius of the scrollbar thumb */
+  100% {
+    background: rgb(180, 97, 2);
   }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(197, 62, 4); /* Color of the scrollbar thumb on hover */
-  }
-  
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(180, 97, 2); /* Initial color of the scrollbar thumb */
+  border-radius: 10px; /* Radius of the scrollbar thumb */
+  transition: background 0.3s ease; /* Smooth transition for color changes */
+  animation: scrollEffect 3s infinite; /* Continuous animation */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(197, 62, 4); /* Color of the scrollbar thumb on hover */
+}
