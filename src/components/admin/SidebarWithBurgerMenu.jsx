@@ -158,7 +158,7 @@ export function SidebarWithBurgerMenu() {
               <ListItemPrefix>
                 <PowerIcon className="h-5 w-5" />
               </ListItemPrefix>
-              Log Out
+              Log Out Home
             </ListItem>
           </List>
         </Card>
