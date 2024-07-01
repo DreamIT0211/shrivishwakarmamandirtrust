@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { dakor } from "../../assets";
 import style from "../../style";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const Darshan = () => {
   const [videos, setVideos] = useState([]);
@@ -18,7 +19,7 @@ const Darshan = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/youtube-videos"
+         `${apiConfig.Base_Url}api/youtube-videos`
         );
         const formattedVideos = response.data.map((video) => {
           const videoId = new URL(video.video_link).searchParams.get("v");

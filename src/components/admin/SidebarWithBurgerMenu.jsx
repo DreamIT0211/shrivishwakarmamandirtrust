@@ -17,6 +17,7 @@ import {
 import {
   PowerIcon,
   HomeModernIcon,
+  HomeIcon,
   UsersIcon,
   PhotoIcon,
   VideoCameraIcon,
@@ -78,7 +79,7 @@ export function SidebarWithBurgerMenu() {
               Dashboard
             </Typography>
           </div>
-          <div className="p-2">
+          {/* <div className="p-2">
             <Input
               icon={
                 <MagnifyingGlassIcon className="h-5 w-5 text-amber-300 hover:text-amber-400" />
@@ -86,7 +87,9 @@ export function SidebarWithBurgerMenu() {
               label="Search"
               color="amber"
             />
-          </div>
+          </div> */}
+
+          <hr className="my-2 border-white" />
           <List>
             <Accordion
               open={open === 1}
@@ -112,7 +115,7 @@ export function SidebarWithBurgerMenu() {
             ></Accordion>
             <ListItem className={`hover:${style.colors.navbarhighlight}`}>
               <ListItemPrefix>
-                <HomeModernIcon className="h-5 w-5" />
+                <HomeIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Link to="/Home"> Home page</Link>
             </ListItem>
@@ -122,10 +125,9 @@ export function SidebarWithBurgerMenu() {
               </ListItemPrefix>
               <Link to="dashboard/UserManagement"> UserManagement</Link>
             </ListItem>
-            <hr className="my-2 border-blue-gray-50" />
             <ListItem className={`hover:${style.colors.navbarhighlight}`}>
               <ListItemPrefix>
-                <PhotoIcon className="h-5 w-5" />
+                <HomeModernIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Link to="dashboard/heromanagement"> heromanagement</Link>
             </ListItem>
@@ -134,7 +136,6 @@ export function SidebarWithBurgerMenu() {
                 <VideoCameraIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Link to="dashboard/LiveDarshanManagement">
-                {" "}
                 LiveDarshanManagement
               </Link>
             </ListItem>
@@ -149,6 +150,12 @@ export function SidebarWithBurgerMenu() {
                 <CalendarDaysIcon className="h-5 w-5" />
               </ListItemPrefix>
               <Link to="dashboard/EventManagement"> EventManagement</Link>
+            </ListItem>
+            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+              <ListItemPrefix>
+                <PhotoIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Link to="dashboard/GalleryManagement"> GalleryManagement</Link>
             </ListItem>
             <ListItem
               onClick={handleLogout}

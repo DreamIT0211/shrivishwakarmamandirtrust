@@ -119,6 +119,12 @@ END;
 ALTER TABLE Headline
 ADD created_at DATETIME DEFAULT GETDATE();
 
+
+CREATE TABLE gallery (
+    id INT PRIMARY KEY IDENTITY,
+    image_url VARCHAR(MAX)
+);
+
 SELECT * FROM roombooking;
 SELECT * FROM rooms;
 SELECT * FROM users;
@@ -128,3 +134,4 @@ SELECT * FROM HeroImages;
 SELECT * FROM live_darshan;
 SELECT * FROM Headline;
 SELECT * FROM trustee;
+SELECT * FROM gallery;

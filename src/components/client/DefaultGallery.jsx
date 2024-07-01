@@ -1,38 +1,21 @@
-import React from "react";
-import { testpic } from "../../assets";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { dakor } from "../../assets";
-import FooterWithSocialLinks from "./FooterWithSocialLinks";
 
 export function DefaultGallery() {
-  const data = [
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-    {
-      imageLink: testpic,
-    },
-  ];
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/gallery/cli");
+        setImages(response.data);
+      } catch (err) {
+        console.error("Failed to fetch images", err);
+      }
+    };
+    fetchImages();
+  }, []);
 
   return (
     <>
@@ -44,17 +27,16 @@ export function DefaultGallery() {
         />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
           <h1 className="text-4xl font-bold mb-2">Gallery</h1>
-          {/* <p className="text-lg font-medium">Experience the divine</p> */}
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>
       </div>
       <div className="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 md:grid-cols-3 m-4 p-4">
-        {data.map(({ imageLink }, index) => (
+        {images.map((image, index) => (
           <div key={index}>
             <img
               className="h-80 w-full max-w-full rounded-lg object-cover object-center hover:shadow-xl hover:scale-105"
-              src={imageLink}
-              alt="gallery-photo"
+              src={image.image_url}
+              alt={`gallery-photo-${index}`}
             />
           </div>
         ))}

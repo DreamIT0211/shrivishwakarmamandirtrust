@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import { dakor } from "../../assets";
 import TempleMap from "./TempleMap";
-import FooterWithSocialLinks from "./FooterWithSocialLinks";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +37,7 @@ const ContactUs = () => {
     setError(null);
     try {
       // Send contact message
-      await axios.post("http://localhost:3000/api/contact", formData);
+      await axios.post(`${apiConfig.Base_Url}api/contact`, formData);
       setSuccess(true);
     } catch (error) {
       setError("Failed to send message. Please try again later.");
