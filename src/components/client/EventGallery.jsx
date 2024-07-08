@@ -3,6 +3,7 @@ import axios from "axios";
 import { ImSpinner9 } from "react-icons/im";
 import { dakor } from "../../assets";
 import style from "../../style";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const EventGallery = () => {
   const [events, setEvents] = useState([]);
@@ -13,7 +14,7 @@ const EventGallery = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/events/cli"
+          `${apiConfig.Base_Url}api/events/cli`
         );
         setEvents(response.data);
       } catch (err) {

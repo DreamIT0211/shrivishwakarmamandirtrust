@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { dakor } from "../../assets";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const Trustees = () => {
   const [trustees, setTrustees] = useState([]);
@@ -14,7 +15,7 @@ const Trustees = () => {
   useEffect(() => {
     const fetchTrustees = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/trustees/cli");
+        const response = await fetch(`${apiConfig.Base_Url}api/trustees/cli`);
         const data = await response.json();
         setTrustees(data);
         setLoading(false);

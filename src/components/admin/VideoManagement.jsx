@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const VideoManagement = () => {
   const [videos, setVideos] = useState([]);
@@ -23,7 +24,7 @@ const VideoManagement = () => {
   const fetchVideos = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/youtube-videos/admin?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/youtube-videos/admin?page=${currentPage}&limit=5`
       );
       setVideos(response.data.videos);
       setTotalPages(response.data.totalPages);
@@ -43,7 +44,7 @@ const VideoManagement = () => {
     if (confirmDelete) {
       try {
         await axios.delete(
-          `http://localhost:3000/api/youtube-videos/${videoId}`
+          `${apiConfig.Base_Url}api/youtube-videos/${videoId}`
         );
         fetchVideos();
       } catch (err) {
@@ -84,7 +85,7 @@ const VideoManagement = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3000/api/youtube-videos/${currentVideo.video_id}`,
+        `${apiConfig.Base_Url}api/youtube-videos/${currentVideo.video_id}`,
         formData
       );
       fetchVideos();
@@ -104,7 +105,7 @@ const VideoManagement = () => {
   const handleAddVideo = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/youtube-videos", newVideo);
+      await axios.post(`${apiConfig.Base_Url}api/youtube-videos`, newVideo);
       setNewVideo({
         video_link: "",
         video_title: "",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { dakor } from "../../assets";
+import { apiConfig } from "../../Services/GlobalApi";
 
 export function DefaultGallery() {
   const [images, setImages] = useState([]);
@@ -12,7 +13,7 @@ export function DefaultGallery() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/gallery/cli");
+        const response = await axios.get(`${apiConfig.Base_Url}api/gallery/cli`);
         setImages(response.data);
         setLoading(false);
       } catch (err) {

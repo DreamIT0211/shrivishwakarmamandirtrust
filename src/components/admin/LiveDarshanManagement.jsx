@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const LiveDarshanManagement = () => {
   const [liveDarshan, setLiveDarshan] = useState(null);
@@ -14,7 +15,7 @@ const LiveDarshanManagement = () => {
 
   const fetchLiveDarshan = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/live-darshan");
+      const response = await axios.get(`${apiConfig.Base_Url}api/live-darshan`);
       setLiveDarshan(response.data);
     } catch (err) {
       console.error(err);
@@ -23,7 +24,7 @@ const LiveDarshanManagement = () => {
 
   const handleAddLiveDarshan = async () => {
     try {
-      await axios.post("http://localhost:3000/api/live-darshan", {
+      await axios.post(`${apiConfig.Base_Url}api/live-darshan`, {
         video_link: newVideoLink
       });
       fetchLiveDarshan();
@@ -36,7 +37,7 @@ const LiveDarshanManagement = () => {
 
   const handleDeleteLiveDarshan = async () => {
     try {
-      await axios.delete(`http://localhost:3000/api/live-darshan/${liveDarshan.id}`);
+      await axios.delete(`${apiConfig.Base_Url}api/live-darshan/${liveDarshan.id}`);
       setLiveDarshan(null);
     } catch (err) {
       console.error(err);

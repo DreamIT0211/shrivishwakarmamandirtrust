@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { apiConfig } from '../../Services/GlobalApi';
 const Headline = () => {
   const [headline, setHeadline] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/headlines/')
+    axios.get('${apiConfig.Base_Url}api/headlines/')
      .then(response => {
         setHeadline(response.data.Line);
       })

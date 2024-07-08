@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
 import { dakor } from "../../assets";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const LiveDarshan = () => {
   const [videoLink, setVideoLink] = useState("");
@@ -12,7 +13,7 @@ const LiveDarshan = () => {
     const fetchVideoLink = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/live-darshan"
+          `${apiConfig.Base_Url}api/live-darshan`
         ); // Replace with your API endpoint
         setVideoLink(response.data.video_link);
       } catch (error) {

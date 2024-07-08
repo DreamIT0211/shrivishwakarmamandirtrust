@@ -13,6 +13,7 @@ import {
   Button,
   Spinner
 } from "@material-tailwind/react";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Signup = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3000/api/users/register",
+        `${apiConfig.Base_Url}api/users/register`,
         formData
       );
       setMessage(response.data.message);

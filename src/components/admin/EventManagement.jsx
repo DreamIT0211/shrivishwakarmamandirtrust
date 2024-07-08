@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const EventManagement = () => {
   const [events, setEvents] = useState([]);
@@ -24,7 +25,7 @@ const EventManagement = () => {
   const fetchEvents = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/events?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/events?page=${currentPage}&limit=5`
       );
       setEvents(response.data.events);
       setTotalPages(response.data.totalPages);
@@ -43,7 +44,7 @@ const EventManagement = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/events/${eventId}`);
+        await axios.delete(`${apiConfig.Base_Url}api/events/${eventId}`);
         fetchEvents();
       } catch (err) {
         console.error(err);
