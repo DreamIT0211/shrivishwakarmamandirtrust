@@ -1,5 +1,7 @@
 // controllers/eventController.js
 const { sql, poolPromise } = require("../config/db");
+const fs = require("fs");
+const path = require("path");
 
 const saveImageToServer = (file, folder) => {
   return new Promise((resolve, reject) => {
@@ -61,7 +63,7 @@ class EventController {
         const { event_title, event_description } = event;
 
         // Save the image to your server and obtain the image URL or file path
-        const imageUrl = await saveImageToServer(req.file, 'events');
+        const imageUrl = await saveImageToServer(req.file, "events");
 
         // Save event details (including the image URL) to the database
         await pool
@@ -84,16 +86,16 @@ class EventController {
     const { id } = req.params;
     const { event_title, event_description } = req.body;
     let { event_image } = req.body;
-  
+
     try {
       const pool = await poolPromise;
-  
+
       // Check if a new image file is uploaded
       if (req.file) {
         const imageUrl = `${process.env.DOMAIN_URL}/uploads/events/${req.file.filename}`; // Obtain the image URL
         event_image = imageUrl; // Update the event_image with the new image URL
       }
-  
+
       await pool
         .request()
         .input("id", sql.Int, id)
@@ -109,10 +111,39 @@ class EventController {
     }
   }
 
+  // async deleteEvent(req, res) {
+  //   const { id } = req.params;
+  //   try {
+  //     const pool = await poolPromise;
+  //     await pool
+  //       .request()
+  //       .input("id", sql.Int, id)
+  //       .query("DELETE FROM events WHERE event_id = @id");
+  //     res.json({ message: "Event deleted successfully" });
+  //   } catch (err) {
+  //     res.status(500).send(err.message);
+  //   }
+  // }
+
   async deleteEvent(req, res) {
     const { id } = req.params;
     try {
       const pool = await poolPromise;
+      const result = await pool
+        .request()
+        .input("id", sql.Int, id)
+        .query("SELECT event_image FROM events WHERE event_id = @id");
+      const eventImage = result.recordset[0].event_image;
+      const fileName = path.basename(eventImage); // Get the file name from the URL
+      const filePath = path.join(__dirname, "../uploads/events", fileName); // Construct the file path
+
+      // Delete the file from the directory
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error(err);
+        }
+      });
+
       await pool
         .request()
         .input("id", sql.Int, id)

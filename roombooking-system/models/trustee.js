@@ -5,6 +5,7 @@ class Trustee {
       this.trustee_name = trustee_name;
       this.trustee_mobileNo = trustee_mobileNo;
       this.trustee_description = trustee_description;
+      this.trustee_title = trustee_title;
     }
   }
   

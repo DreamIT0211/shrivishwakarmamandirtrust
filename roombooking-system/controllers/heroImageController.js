@@ -1,6 +1,8 @@
 // controllers/heroImageController.js
 
 const { sql, poolPromise } = require("../config/db");
+const path = require('path');
+const fs = require("fs");
 
 // Function to save image to the server and return the URL
 const saveImageToServer = (file, folder) => {
@@ -61,15 +63,13 @@ class HeroImageController {
 
       for (const image of images) {
         // Save the image to your server and obtain the image URL or file path
-        const imageUrl = await saveImageToServer(req.file, 'home');
+        const imageUrl = await saveImageToServer(req.file, "home");
 
         // Save image details (including the image URL) to the database
         await pool
           .request()
           .input("image_link", sql.NVarChar, imageUrl)
-          .query(
-            "INSERT INTO HeroImages (image_link) VALUES (@image_link)"
-          );
+          .query("INSERT INTO HeroImages (image_link) VALUES (@image_link)");
       }
 
       res.json({ message: `${images.length} image(s) created successfully` });
@@ -87,7 +87,7 @@ class HeroImageController {
 
       // Check if a new image file is uploaded
       if (req.file) {
-        const imageUrl = await saveImageToServer(req.file, 'home'); // Obtain the image URL
+        const imageUrl = await saveImageToServer(req.file, "home"); // Obtain the image URL
         image_link = imageUrl; // Update the image_link with the new image URL
       }
 
@@ -104,16 +104,53 @@ class HeroImageController {
     }
   }
 
+  // async deleteHeroImage(req, res) {
+  //   const { image_id } = req.params;
+  //   try {
+  //     const pool = await poolPromise;
+  //     await pool
+  //       .request()
+  //       .input("image_id", sql.Int, image_id)
+  //       .query("DELETE FROM HeroImages WHERE image_id = @image_id");
+  //     res.json({ message: "Image deleted successfully" });
+  //   } catch (err) {
+  //     res.status(500).send(err.message);
+  //   }
+  // }
+
   async deleteHeroImage(req, res) {
     const { image_id } = req.params;
     try {
       const pool = await poolPromise;
+
+      // Retrieve image details to get the file name
+      const result = await pool
+        .request()
+        .input("image_id", sql.Int, image_id)
+        .query("SELECT image_link FROM HeroImages WHERE image_id = @image_id");
+
+      if (!result.recordset.length) {
+        return res.status(404).json({ message: "Image not found" });
+      }
+
+      const imageUrl = result.recordset[0].image_link;
+      const fileName = imageUrl.split("/").pop(); // Extract filename from URL
+
+      // Delete file from uploads/home directory
+      const filePath = path.join(__dirname, `../uploads/home/${fileName}`);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+
+      // Delete image record from database
       await pool
         .request()
         .input("image_id", sql.Int, image_id)
         .query("DELETE FROM HeroImages WHERE image_id = @image_id");
-      res.json({ message: "Image deleted successfully" });
+
+      res.json({ message: "Image and file deleted successfully" });
     } catch (err) {
+      console.error(err);
       res.status(500).send(err.message);
     }
   }

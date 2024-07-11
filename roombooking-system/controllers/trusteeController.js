@@ -1,5 +1,7 @@
 // controllers/trusteeController.js
 const { sql, poolPromise } = require("../config/db");
+const fs = require("fs");
+const path = require("path");
 
 const saveImageToServer = (file, folder) => {
   return new Promise((resolve, reject) => {
@@ -52,7 +54,12 @@ class TrusteeController {
   }
 
   async createTrustee(req, res) {
-    const { trustee_name, trustee_mobileNo, trustee_description } = req.body;
+    const {
+      trustee_name,
+      trustee_mobileNo,
+      trustee_description,
+      trustee_title,
+    } = req.body;
 
     try {
       const pool = await poolPromise;
@@ -67,8 +74,9 @@ class TrusteeController {
         .input("trustee_name", sql.NVarChar, trustee_name)
         .input("trustee_mobileNo", sql.NVarChar, trustee_mobileNo)
         .input("trustee_description", sql.NVarChar, trustee_description)
+        .input("trustee_title", sql.NVarChar, trustee_title) // New column
         .query(
-          "INSERT INTO trustee (trustee_image, trustee_name, trustee_mobileNo, trustee_description) VALUES (@trustee_image, @trustee_name, @trustee_mobileNo, @trustee_description)"
+          "INSERT INTO trustee (trustee_image, trustee_name, trustee_mobileNo, trustee_description, trustee_title) VALUES (@trustee_image, @trustee_name, @trustee_mobileNo, @trustee_description, @trustee_title)"
         );
 
       res.json({ message: "Trustee created successfully" });
@@ -79,7 +87,12 @@ class TrusteeController {
 
   async updateTrustee(req, res) {
     const { id } = req.params;
-    const { trustee_name, trustee_mobileNo, trustee_description } = req.body;
+    const {
+      trustee_name,
+      trustee_mobileNo,
+      trustee_description,
+      trustee_title,
+    } = req.body;
     let { trustee_image } = req.body;
 
     try {
@@ -98,8 +111,9 @@ class TrusteeController {
         .input("trustee_name", sql.NVarChar, trustee_name)
         .input("trustee_mobileNo", sql.NVarChar, trustee_mobileNo)
         .input("trustee_description", sql.NVarChar, trustee_description)
+        .input("trustee_title", sql.NVarChar, trustee_title) // New column
         .query(
-          "UPDATE trustee SET trustee_image = @trustee_image, trustee_name = @trustee_name, trustee_mobileNo = @trustee_mobileNo, trustee_description = @trustee_description WHERE trustee_id = @id"
+          "UPDATE trustee SET trustee_image = @trustee_image, trustee_name = @trustee_name, trustee_mobileNo = @trustee_mobileNo, trustee_description = @trustee_description, trustee_title = @trustee_title WHERE trustee_id = @id"
         );
       res.json({ message: "Trustee updated successfully" });
     } catch (err) {
@@ -107,10 +121,39 @@ class TrusteeController {
     }
   }
 
+  // async deleteTrustee(req, res) {
+  //   const { id } = req.params;
+  //   try {
+  //     const pool = await poolPromise;
+  //     await pool
+  //       .request()
+  //       .input("id", sql.Int, id)
+  //       .query("DELETE FROM trustee WHERE trustee_id = @id");
+  //     res.json({ message: "Trustee deleted successfully" });
+  //   } catch (err) {
+  //     res.status(500).send(err.message);
+  //   }
+  // }
+
   async deleteTrustee(req, res) {
     const { id } = req.params;
     try {
       const pool = await poolPromise;
+      const result = await pool
+        .request()
+        .input("id", sql.Int, id)
+        .query("SELECT trustee_image FROM trustee WHERE trustee_id = @id");
+      const trusteeImage = result.recordset[0].trustee_image;
+      const fileName = path.basename(trusteeImage); // Get the file name from the URL
+      const filePath = path.join(__dirname, "../uploads/trustees", fileName); // Construct the file path
+
+      // Delete the file from the directory
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error(err);
+        }
+      });
+
       await pool
         .request()
         .input("id", sql.Int, id)

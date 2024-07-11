@@ -81,9 +81,10 @@ CREATE TABLE Headline (
 CREATE TABLE trustee (
     trustee_id INT PRIMARY KEY IDENTITY,
     trustee_image VARCHAR(MAX),
-    trustee_name VARCHAR(255),
-    trustee_mobileNo VARCHAR(50),
-    trustee_description TEXT
+    trustee_name NVARCHAR(255),  -- Changed to NVARCHAR to support Unicode characters
+    trustee_mobileNo NVARCHAR(50),  -- Changed to NVARCHAR to support Unicode characters
+    trustee_description NTEXT,  -- Changed to NTEXT to support Unicode characters
+    trustee_title NVARCHAR(50) NULL  -- Already using NVARCHAR, so no change needed
 );
 
 CREATE TRIGGER trg_LimitToOneRow
