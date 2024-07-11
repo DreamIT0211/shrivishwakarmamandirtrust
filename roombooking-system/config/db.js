@@ -6,7 +6,7 @@ const config = {
   password: process.env.DB_PASSWORD,
   server: process.env.DB_SERVER,
   //here I added port which is usee for only wise grab web
-  port: parseInt(process.env.DB_PORT),
+  // port: parseInt(process.env.DB_PORT),
   database: process.env.DB_DATABASE,
   options: {
     encrypt: true, // Use encryption
