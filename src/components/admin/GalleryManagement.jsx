@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const GalleryManagement = () => {
   const [images, setImages] = useState([]);
@@ -16,7 +17,7 @@ const GalleryManagement = () => {
   const fetchImages = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/gallery?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/gallery?page=${currentPage}&limit=5`
       );
       setImages(response.data.images);
       setTotalPages(response.data.totalPages);
@@ -35,7 +36,7 @@ const GalleryManagement = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/gallery/${imageId}`);
+        await axios.delete(`${apiConfig.Base_Url}api/gallery/${imageId}`);
         fetchImages();
       } catch (err) {
         console.error(err);
@@ -67,7 +68,7 @@ const GalleryManagement = () => {
       }
 
       await axios.put(
-        `http://localhost:3000/api/gallery/${currentImage.id}`,
+        `${apiConfig.Base_Url}api/gallery/${currentImage.id}`,
         formDataToSend,
         {
           headers: {
@@ -96,7 +97,7 @@ const GalleryManagement = () => {
       const formData = new FormData();
       formData.append("image", newImage.image_file); // Append the file to the FormData object
 
-      await axios.post("http://localhost:3000/api/gallery/", formData, {
+      await axios.post(`${apiConfig.Base_Url}api/gallery/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Set content type to multipart/form-data for file upload
         },

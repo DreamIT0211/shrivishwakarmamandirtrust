@@ -157,6 +157,12 @@ export function SidebarWithBurgerMenu() {
               </ListItemPrefix>
               <Link to="dashboard/GalleryManagement"> GalleryManagement</Link>
             </ListItem>
+             <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+              <ListItemPrefix>
+                <PhotoIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Link to="dashboard/TrustedImagesManagement"> TrustedImagesManagement</Link>
+            </ListItem>
             <ListItem
               onClick={handleLogout}
               className={`hover:${style.colors.navbarhighlight}`}

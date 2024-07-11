@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/users?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/users?page=${currentPage}&limit=5`
       );
       if (response.data && Array.isArray(response.data.users)) {
         setUsers(response.data.users);
@@ -44,7 +45,7 @@ const UserManagement = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/users/${userId}`);
+        await axios.delete(`${apiConfig.Base_Url}api/users/${userId}`);
         fetchUsers();
       } catch (err) {
         console.error(err);
@@ -85,7 +86,7 @@ const UserManagement = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:3000/api/users/${currentUser.UserID}`,
+        `${apiConfig.Base_Url}api/users/${currentUser.UserID}`,
         formData
       );
       fetchUsers();

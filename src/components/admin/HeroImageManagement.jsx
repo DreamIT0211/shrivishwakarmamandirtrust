@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const HeroImageManagement = () => {
   const [images, setImages] = useState([]);
@@ -14,7 +15,7 @@ const HeroImageManagement = () => {
   const fetchImages = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/hero-images/admin?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/hero-images/admin?page=${currentPage}&limit=5`
       );
       setImages(response.data.images);
       setTotalPages(response.data.totalPages);
@@ -33,7 +34,7 @@ const HeroImageManagement = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/hero-images/${imageId}`);
+        await axios.delete(`${apiConfig.Base_Url}api/hero-images/${imageId}`);
         fetchImages();
       } catch (err) {
         console.error(err);
@@ -64,7 +65,7 @@ const HeroImageManagement = () => {
       formData.append("image", newImage);
 
       await axios.put(
-        `http://localhost:3000/api/hero-images/${currentImage.image_id}`,
+        `${apiConfig.Base_Url}api/hero-images/${currentImage.image_id}`,
         formData,
         {
           headers: {
@@ -85,7 +86,7 @@ const HeroImageManagement = () => {
       const formData = new FormData();
       formData.append("image", newImage);
 
-      await axios.post("http://localhost:3000/api/hero-images/", formData, {
+      await axios.post(`${apiConfig.Base_Url}api/hero-images/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

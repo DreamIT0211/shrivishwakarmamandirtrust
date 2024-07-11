@@ -87,6 +87,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useTransition, animated } from "@react-spring/web";
 import "../../slick-styles.css";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const HeroSlider = () => {
   const [images, setImages] = useState([]);
@@ -98,7 +99,7 @@ const HeroSlider = () => {
     const fetchImages = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/hero-images"
+          `${apiConfig.Base_Url}api/hero-images`
         );
         setImages(response.data);
         console.log(response);

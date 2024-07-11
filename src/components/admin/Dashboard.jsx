@@ -9,6 +9,7 @@ import EventManagement from "./EventManagement";
 import UserManagement from "./UserManagement";
 import VideoManagement from "./VideoManagement";
 import GalleryManagement from "./GalleryManagement";
+import TrustedImagesManagement from "./TrustedImagesManagement ";
 const MainContent = () => {
   return (
     <div className={""}>
@@ -36,7 +37,12 @@ const MainContent = () => {
           path="/dashboard/GalleryManagement"
           element={<GalleryManagement />}
         />
+            <Route
+          path="/dashboard/TrustedImagesManagement"
+          element={<TrustedImagesManagement />}
+        />
       </Routes>
+      
     </div>
   );
 };

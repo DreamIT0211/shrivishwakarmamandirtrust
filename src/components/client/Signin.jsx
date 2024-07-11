@@ -12,6 +12,7 @@ import {
   Input,
   Button,
 } from "@material-tailwind/react";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const Signin = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:3000/api/users/login",
+        `${apiConfig.Base_Url}api/users/login`,
         formData
       );
 

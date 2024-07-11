@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit, GrFormTrash, GrFormAdd } from "react-icons/gr";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const EventManagement = () => {
   const [events, setEvents] = useState([]);
@@ -24,7 +25,7 @@ const EventManagement = () => {
   const fetchEvents = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/events?page=${currentPage}&limit=5`
+        `${apiConfig.Base_Url}api/events?page=${currentPage}&limit=5`
       );
       setEvents(response.data.events);
       setTotalPages(response.data.totalPages);
@@ -43,7 +44,7 @@ const EventManagement = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/api/events/${eventId}`);
+        await axios.delete(`${apiConfig.Base_Url}api/events/${eventId}`);
         fetchEvents();
       } catch (err) {
         console.error(err);
@@ -94,7 +95,7 @@ const EventManagement = () => {
       }
 
       await axios.put(
-        `http://localhost:3000/api/events/${currentEvent.event_id}`,
+        `${apiConfig.Base_Url}api/events/${currentEvent.event_id}`,
         formDataToSend,
         {
           headers: {
@@ -121,11 +122,11 @@ const EventManagement = () => {
     try {
       // Create a FormData object to handle file upload
       const formData = new FormData();
-      formData.append("event_image", newEvent.event_image_file); // Append the file to the FormData object
+      formData.append("image", newEvent.event_image_file); // Append the file to the FormData object
       formData.append("event_title", newEvent.event_title);
       formData.append("event_description", newEvent.event_description);
 
-      await axios.post("http://localhost:3000/api/events/", formData, {
+      await axios.post(`${apiConfig.Base_Url}api/events/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Set content type to multipart/form-data for file upload
         },

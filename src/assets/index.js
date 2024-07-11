@@ -6,7 +6,7 @@ import dakorMain from "./RanchodraiTemple.jpg"
 import Pdf from "./NewSetting.pdf"
 import testpic from './test.jpg'
 import Nimesh from './NIMESH.jpeg'
-
+import donation_qrcode from './donation_qrcode.jpg'
 export {
     logo,
     dakor,
@@ -15,5 +15,6 @@ export {
     dakorMain,
     Pdf,
     testpic,
-    Nimesh
+    Nimesh,
+    donation_qrcode
 };
