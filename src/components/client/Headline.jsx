@@ -5,7 +5,7 @@ const Headline = () => {
   const [headline, setHeadline] = useState('');
 
   useEffect(() => {
-    axios.get('${apiConfig.Base_Url}api/headlines/')
+    axios.get(`${apiConfig.Base_Url}api/headlines/`)
      .then(response => {
         setHeadline(response.data.Line);
       })

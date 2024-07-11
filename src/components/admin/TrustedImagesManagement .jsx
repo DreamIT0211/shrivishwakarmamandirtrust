@@ -50,6 +50,13 @@ const TrustedImagesManagement = () => {
 
   const handleEdit = (trustee) => {
     setCurrentTrustee(trustee);
+    setNewTrustee({
+      trustee_image: trustee.trustee_image,
+      trustee_name: trustee.trustee_name,
+      trustee_mobileNo: trustee.trustee_mobileNo,
+      trustee_description: trustee.trustee_description,
+      trustee_title: trustee.trustee_title,
+    });
     setShowModal(true);
   };
 
@@ -69,9 +76,9 @@ const TrustedImagesManagement = () => {
       formDataToSend.append("trustee_title", newTrustee.trustee_title);
 
       if (newTrustee.trustee_image) {
-        formDataToSend.append("trustee_image", newTrustee.trustee_image);
+        formDataToSend.append("image", newTrustee.trustee_image);
       } else {
-        formDataToSend.append("trustee_image", currentTrustee.trustee_image);
+        formDataToSend.append("image", currentTrustee.trustee_image);
       }
 
       await axios.put(

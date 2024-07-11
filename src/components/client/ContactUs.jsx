@@ -60,13 +60,39 @@ const ContactUs = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>
       </div>
-      <div className="flex flex-col lg:flex-row justify-center items-center lg:space-x-8 mt-20 space-y-8 lg:space-y-0">
-        <Card className="w-full max-w-lg h-auto">
-          <CardHeader color="amber" className="text-center">
-            <Typography variant="h2" color="white">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:space-x-10 mt-0 md:mt-10 lg:mt-10 space-y-8 lg:space-y-0 p-2 md:p-0 lg:p-0">
+        <div className="group w-full max-w-lg h-auto bg-purple-500 p-6 rounded-xl shadow-lg transition duration-700 ease-in-out hover:shadow-2xl">
+          <div className="text-center text-red-600 font-bold text-lg">
+            <Typography variant="h2" color="white" className="text-white transition duration-700 ease-in-out group-hover:text-amber-400">
+              શ્રી વિશ્વકર્મા મંદિર ટ્રસ્ટ, ડાકોર
+            </Typography>
+          </div>
+          <div className="bg-yellow-300 py-2 px-4 my-2 text-center font-semibold">
+            IT EXEMPTION CERTI. 80(G)
+          </div>
+          <div className="flex justify-between bg-red-500 py-2 px-4 my-2 text-white font-bold">
+            <span>NAME</span>
+            <span>VISHWAKARMA MANDIR TRUST, DAKOR</span>
+          </div>
+          <div className="flex justify-between bg-blue-500 py-2 px-4 my-2 text-white font-bold">
+            <span>TRUST REGISTRATION NO.</span>
+            <span>A/408/KHEDA</span>
+          </div>
+          <div className="flex justify-between bg-pink-500 py-2 px-4 my-2 text-white font-bold">
+            <span>PAN CARD NO.</span>
+            <span>AAATV1800D</span>
+          </div>
+          <div className="flex justify-between bg-green-500 py-2 px-4 my-2 text-white font-bold">
+            <span>IT EXEMPTION CERTI. 80(G) Registration Number</span>
+            <span>AAATV1800DF20212</span>
+          </div>
+        </div>
+        <Card className="w-full max-w-lg h-auto group">
+          <div className="text-center">
+            <Typography variant="h2" color="purple" className=" text-purple-500 transition duration-700 ease-in-out group-hover:text-amber-500">
               Contact Us
             </Typography>
-          </CardHeader>
+          </div>
           <CardBody>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -106,10 +132,11 @@ const ContactUs = () => {
               </div>
               <Button
                 type="submit"
-                color="amber"
+                color="purple"
                 ripple="light"
                 fullWidth
                 disabled={loading}
+                className="text-white transition duration-700 ease-in-out group-hover:bg-amber-400"
               >
                 {loading ? "Sending..." : "Send Message"}
               </Button>
@@ -126,34 +153,9 @@ const ContactUs = () => {
             </form>
           </CardBody>
         </Card>
-        <div className="w-full max-w-lg h-auto bg-yellow-400 p-4">
-          <div className="text-center text-red-600 font-bold text-lg">
-        <Typography variant="h2" color="white">
-               શ્રી વિશ્વકર્મા મંદિર ટ્રસ્ટ, ડાકોર
-            </Typography>
-          </div>
-          <div className="bg-yellow-300 py-2 px-4 my-2 text-center font-semibold">
-            IT EXEMPTION CERTI. 80(G)
-          </div>
-          <div className="flex justify-between bg-red-500 py-2 px-4 my-2 text-white font-bold">
-            <span>NAME</span>
-            <span>VISHWAKARMA MANDIR TRUST, DAKOR</span>
-          </div>
-          <div className="flex justify-between bg-blue-500 py-2 px-4 my-2 text-white font-bold">
-            <span>TRUST REGISTRATION NO.</span>
-            <span>A/408/KHEDA</span>
-          </div>
-          <div className="flex justify-between bg-pink-500 py-2 px-4 my-2 text-white font-bold">
-            <span>PAN CARD NO.</span>
-            <span>AAATV1800D</span>
-          </div>
-          <div className="flex justify-between bg-green-500 py-2 px-4 my-2 text-white font-bold">
-            <span>IT EXEMPTION CERTI. 80(G) Registration Number</span>
-            <span>AAATV1800DF20212</span>
-          </div>
-        </div>
       </div>
-      <div className="mt-3">
+      <hr className="border-black m-4 border-2" />
+      <div className="m-4">
         <TempleMap />
       </div>
     </>

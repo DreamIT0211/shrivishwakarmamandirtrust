@@ -89,9 +89,9 @@ const EventManagement = () => {
 
       // If a new image file is selected, append it; otherwise, use the existing image
       if (newEvent.event_image_file) {
-        formDataToSend.append("event_image", newEvent.event_image_file);
+        formDataToSend.append("image", newEvent.event_image_file);
       } else {
-        formDataToSend.append("event_image", formData.event_image);
+        formDataToSend.append("image", formData.event_image);
       }
 
       await axios.put(

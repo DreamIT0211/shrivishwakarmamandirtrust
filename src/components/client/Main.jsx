@@ -56,7 +56,7 @@ const Main = () => {
           <StickyNavbar />
         </div>
         <MainContent />
-        <div className="bottom-0 w-full z-50">
+        <div className="bottom-0 w-full mt-10">
           <FooterWithSocialLinks />
         </div>
       </div>

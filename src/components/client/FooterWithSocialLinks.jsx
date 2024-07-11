@@ -31,7 +31,7 @@ const LINKS = [
         text: "Near Post Office Station Road, Dakor-388 225",
       },
       { icon: <FaEnvelope />, text: "dakorvmt@gmail.com" },
-      { icon: <FaPhone />, text: " (02699) 244844" },
+      { icon: <FaPhone />, text: "(02699) 244844" },
     ],
   },
 ];
@@ -78,7 +78,7 @@ export function FooterWithSocialLinks() {
             className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
           >
             &copy; {currentYear}{" "}
-            <a href="https://material-tailwind.com/">
+            <a href="https://www.dreamitinfotech.in/">
               ShriVishwakarmaMandir.org
             </a>
             . All Rights Reserved.

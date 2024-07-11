@@ -32,7 +32,7 @@ const Trustees = () => {
   }
 
   return (
-    <div className="relative h-screen">
+    <>
       <div className="relative mb-4 overflow-hidden">
         <img
           src={dakor}
@@ -44,39 +44,41 @@ const Trustees = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 h-64 p-6 m-2">
-        {trustees.map((trustee, index) => (
-          <Card className="w-full" key={index}>
-            <CardHeader floated={false} className="h-64 z-20">
-              <img
-                src={trustee.trustee_image}
-                alt="profile-picture"
-                className="w-full h-full object-fit"
-              />
-              <div className="bg-red-300 h-6 w-5 z-30"></div>
-            </CardHeader>
-            <CardBody className="text-center bg-orange-50 rounded-md p-2 m-3">
-            <Typography variant="h4" color="red" className="mb-2">
-                {trustee.trustee_title}
-              </Typography>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                {trustee.trustee_name}
-              </Typography>
-              <Typography
-                color="blue-gray"
-                className="font-bold text-blue-500"
-                textGradient
-              >
-                {trustee.trustee_description}
-              </Typography>
-              <Typography className="font-medium text-black" textGradient>
-                {trustee.trustee_mobileNo}
-              </Typography>
-            </CardBody>
-          </Card>
-        ))}
+      <div className="p-4 flex items-center justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {trustees.map((trustee, index) => (
+            <Card className="w-80" key={index}>
+              <CardHeader floated={false} className="h-64 z-20">
+                <img
+                  src={trustee.trustee_image}
+                  alt="profile-picture"
+                  className="w-full h-full object-fit"
+                />
+                <div className="bg-red-300 h-6 w-5 z-30"></div>
+              </CardHeader>
+              <CardBody className="text-center bg-orange-50 rounded-md p-2 m-3">
+                <Typography variant="h4" color="red" className="mb-2">
+                  {trustee.trustee_title}
+                </Typography>
+                <Typography variant="h5" color="blue-gray" className="mb-2">
+                  {trustee.trustee_name}
+                </Typography>
+                <Typography
+                  color="blue-gray"
+                  className="font-bold text-blue-500"
+                  textGradient
+                >
+                  {trustee.trustee_description}
+                </Typography>
+                <Typography className="font-medium text-black" textGradient>
+                  {trustee.trustee_mobileNo}
+                </Typography>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

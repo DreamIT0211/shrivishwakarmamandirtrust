@@ -27,7 +27,7 @@ const TempleMap = () => {
 
   return (
     <>
-      <div id="map" className="h-[474px] rounded-md m-2"></div>
+      <div id="map" className="h-[474px] rounded-md overflow-hidden shadow-md transition duration-700 ease-in-out hover:shadow-2xl"></div>
     </>
   );
 };

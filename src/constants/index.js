@@ -19,10 +19,6 @@ export const navLinks = [
         id: "darshan",
         title: "Darshan Videos",
       },
-      {
-        id: "donation",
-        title: "Donation",
-      },
     ],
   },
   {
@@ -36,6 +32,10 @@ export const navLinks = [
   {
     id: "gallery",
     title: "Gallery",
+  },
+  {
+    id: "donation",
+    title: "Donation",
   },
   {
     id: "contactus",
