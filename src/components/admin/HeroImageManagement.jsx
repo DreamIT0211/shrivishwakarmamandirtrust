@@ -86,7 +86,7 @@ const HeroImageManagement = () => {
       const formData = new FormData();
       formData.append("image", newImage);
 
-      await axios.post(`${apiConfig}api/hero-images/`, formData, {
+      await axios.post(`${apiConfig.Base_Url}api/hero-images/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

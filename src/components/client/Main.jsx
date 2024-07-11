@@ -18,6 +18,7 @@ import ForgotPassword from "./ForgotPassword";
 import DefaultGallery  from "./DefaultGallery";
 import RoomBooking from "./RoomBooking";
 import Trustee from "./Trustee";
+import Donation from "./Donation";
 
 const MainContent = () => {
   const location = useLocation();
@@ -41,6 +42,7 @@ const MainContent = () => {
         <Route path="/gallery" element={<DefaultGallery />} />
         <Route path="/room-booking" element={<RoomBooking />} />
         <Route path="/trustee" element={<Trustee />} />
+        <Route path="/donation" element={<Donation />} />
       </Routes>
     </div>
   );

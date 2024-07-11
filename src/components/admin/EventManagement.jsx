@@ -95,7 +95,7 @@ const EventManagement = () => {
       }
 
       await axios.put(
-        `http://localhost:3000/api/events/${currentEvent.event_id}`,
+        `${apiConfig.Base_Url}api/events/${currentEvent.event_id}`,
         formDataToSend,
         {
           headers: {
@@ -122,11 +122,11 @@ const EventManagement = () => {
     try {
       // Create a FormData object to handle file upload
       const formData = new FormData();
-      formData.append("event_image", newEvent.event_image_file); // Append the file to the FormData object
+      formData.append("image", newEvent.event_image_file); // Append the file to the FormData object
       formData.append("event_title", newEvent.event_title);
       formData.append("event_description", newEvent.event_description);
 
-      await axios.post("http://localhost:3000/api/events/", formData, {
+      await axios.post(`${apiConfig.Base_Url}api/events/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Set content type to multipart/form-data for file upload
         },

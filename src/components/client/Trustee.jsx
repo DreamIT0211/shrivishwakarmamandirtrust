@@ -55,7 +55,10 @@ const Trustees = () => {
               />
               <div className="bg-red-300 h-6 w-5 z-30"></div>
             </CardHeader>
-            <CardBody className="text-center">
+            <CardBody className="text-center bg-orange-50 rounded-md p-2 m-3">
+            <Typography variant="h4" color="red" className="mb-2">
+                {trustee.trustee_title}
+              </Typography>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 {trustee.trustee_name}
               </Typography>
