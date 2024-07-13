@@ -52,7 +52,7 @@ const Darshan = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(
-          `${apiConfig.Base_Url}api/youtube-videos`
+          `${apiConfig.Base_Url}ap/youtube-videos`
         );
         const formattedVideos = formatVideos(response.data);
         setVideos(formattedVideos);

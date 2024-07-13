@@ -16,7 +16,7 @@ export function DefaultGallery() {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`${apiConfig.Base_Url}api/gallery/cli`);
+        const response = await axios.get(`${apiConfig.Base_Url}ap/gallery/cli`);
         setImages(response.data);
         setLoading(false);
       } catch (err) {

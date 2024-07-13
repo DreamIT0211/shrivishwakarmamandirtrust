@@ -22,7 +22,7 @@ const HeroSlider = () => {
     // Fetch the images from the database when the component mounts
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`${apiConfig.Base_Url}api/hero-images`);
+        const response = await axios.get(`${apiConfig.Base_Url}ap/hero-images`);
         setImages(response.data);
       } catch (error) {
         console.error("Error fetching images:", error);

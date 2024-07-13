@@ -289,7 +289,7 @@ const Trustees = () => {
   useEffect(() => {
     const fetchTrustees = async () => {
       try {
-        const response = await fetch(`${apiConfig.Base_Url}api/trustees/cli`);
+        const response = await fetch(`${apiConfig.Base_Url}ap/trustees/cli`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

@@ -35,7 +35,7 @@ const EventGallery = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${apiConfig.Base_Url}api/events/cli`
+          `${apiConfig.Base_Url}ap/events/cli`
         );
         setEvents(response.data);
       } catch (err) {

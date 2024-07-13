@@ -15,7 +15,7 @@ const LiveDarshan = () => {
     const fetchVideoLink = async () => {
       try {
         const response = await axios.get(
-          `${apiConfig.Base_Url}api/live-darshan`
+          `${apiConfig.Base_Url}ap/live-darshan`
         );
         setVideoLink(response.data.video_link);
       } catch (error) {
