@@ -57,20 +57,25 @@ function NavList({ selectedItem, handleSelect }) {
               </MenuHandler>
               <MenuList className="p-1">
                 {navLink.dropdown.map((dropdownItem) => (
-                  <MenuItem
+                  <a
+                    href={`${dropdownItem.id}`}
                     key={dropdownItem.id}
-                    className="flex items-center gap-3 rounded group"
-                    onClick={() => handleSelect(dropdownItem.id)}
+                    className={`flex items-center gap-3 rounded ${style.colors.navbartext} hover:text-amber-800`}
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default anchor behavior
+                      handleSelect(dropdownItem.id); // Call your custom navigation function
+                    }}
                   >
-                    <Typography
-                      as="a"
-                      href={`${dropdownItem.id}`}
-                      variant="small"
-                      className={`font-normal ${style.colors.navbartext} group-hover:text-amber-800`}
-                    >
-                      {dropdownItem.title}
-                    </Typography>
-                  </MenuItem>
+                    <MenuItem className="flex items-center gap-3 rounded">
+                      <Typography
+                        as="span"
+                        variant="small"
+                        className="font-normal"
+                      >
+                        {dropdownItem.title}
+                      </Typography>
+                    </MenuItem>
+                  </a>
                 ))}
               </MenuList>
             </Menu>
