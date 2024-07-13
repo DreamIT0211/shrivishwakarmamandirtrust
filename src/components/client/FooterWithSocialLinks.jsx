@@ -86,8 +86,8 @@ export function FooterWithSocialLinks() {
             className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
           >
             &copy; {currentYear}{" "}
-            <a href="https://www.dreamitinfotech.in/">
-              ShriVishwakarmaMandir.org
+            <a href="https://vmtdakor.org/">
+              vmtdakor.org
             </a>
             . All Rights Reserved.
           </Typography>
