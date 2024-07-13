@@ -1,7 +1,7 @@
 // src/components/client/StickyNavbar.jsx
 
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { navLinks } from "../../constants";
 import style from "../../style";
 import { logo } from "../../assets";
@@ -57,14 +57,11 @@ function NavList({ selectedItem, handleSelect }) {
               </MenuHandler>
               <MenuList className="p-1">
                 {navLink.dropdown.map((dropdownItem) => (
-                  <a
-                    href={`${dropdownItem.id}`}
+                  <Link
+                    to={`${dropdownItem.id}`}
                     key={dropdownItem.id}
                     className={`flex items-center gap-3 rounded ${style.colors.navbartext} hover:text-amber-800`}
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevent default anchor behavior
-                      handleSelect(dropdownItem.id); // Call your custom navigation function
-                    }}
+                    onClick={() => handleSelect(dropdownItem.id)}
                   >
                     <MenuItem className="flex items-center gap-3 rounded">
                       <Typography
@@ -75,7 +72,7 @@ function NavList({ selectedItem, handleSelect }) {
                         {dropdownItem.title}
                       </Typography>
                     </MenuItem>
-                  </a>
+                  </Link>
                 ))}
               </MenuList>
             </Menu>
