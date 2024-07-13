@@ -113,12 +113,14 @@ export function SidebarWithBurgerMenu() {
                 />
               }
             ></Accordion>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <HomeIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="/Home"> Home page</Link>
-            </ListItem>
+            <Link to="/Home">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <HomeIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Home page
+              </ListItem>
+            </Link>
             <ListItem className={`hover:${style.colors.navbarhighlight}`}>
               <ListItemPrefix>
                 <UsersIcon className="h-5 w-5" />
@@ -157,11 +159,14 @@ export function SidebarWithBurgerMenu() {
               </ListItemPrefix>
               <Link to="dashboard/GalleryManagement"> GalleryManagement</Link>
             </ListItem>
-             <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
               <ListItemPrefix>
                 <PhotoIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Link to="dashboard/TrustedImagesManagement"> TrustedImagesManagement</Link>
+              <Link to="dashboard/TrustedImagesManagement">
+                {" "}
+                TrustedImagesManagement
+              </Link>
             </ListItem>
             <ListItem
               onClick={handleLogout}
