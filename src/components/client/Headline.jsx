@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { apiConfig } from '../../Services/GlobalApi';
+
 const Headline = () => {
   const [headline, setHeadline] = useState('');
 
   useEffect(() => {
     axios.get(`${apiConfig.Base_Url}api/headlines/`)
-     .then(response => {
+      .then(response => {
         setHeadline(response.data.Line);
       })
-     .catch(error => {
+      .catch(error => {
         console.error('There was an error fetching the headline!', error);
+        setHeadline('।। શ્રી વિશ્વકર્મણે નમઃ ।।');
       });
   }, []);
 

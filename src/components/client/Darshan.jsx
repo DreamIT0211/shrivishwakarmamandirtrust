@@ -12,25 +12,54 @@ import { dakor } from "../../assets";
 import style from "../../style";
 import { apiConfig } from "../../Services/GlobalApi";
 
+const fallbackVideos = [
+  {
+    video_link: "https://www.youtube.com/watch?v=BTEejSQ42w8",
+    video_title: "Shree Vishwakarma Mandir, Dakor",
+    video_description: "Mandir Video",
+  },
+  {
+    video_link: "https://www.youtube.com/watch?v=gM2Aahvb9yA",
+    video_title: "Shree Vishwakarma Mandir, Dakor",
+    video_description: "Dakor : Celebration of Shree Vishwakarma Poojan Divas",
+  },
+  {
+    video_link: "https://www.youtube.com/watch?v=KxpZO5h8A6g",
+    video_title: "Shree Vishwakarma Mandir, Dakor",
+    video_description: "विश्वकर्मा सुवर्ण मंदिर - डाकोर 2020",
+  },
+  {
+    video_link: "https://www.youtube.com/watch?v=ClwfT8l7xbI",
+    video_title: "Shree Vishwakarma Mandir, Dakor",
+    video_description: "विश्वकर्मा मंदिर डाकोर दर्शन",
+  },
+];
+
+const formatVideos = (videos) => {
+  return videos.map((video) => {
+    const videoId = new URL(video.video_link).searchParams.get("v");
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    return { ...video, embedUrl };
+  });
+};
+
 const Darshan = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get(
-         `${apiConfig.Base_Url}api/youtube-videos`
+          `${apiConfig.Base_Url}api/youtube-videos`
         );
-        const formattedVideos = response.data.map((video) => {
-          const videoId = new URL(video.video_link).searchParams.get("v");
-          const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-          return { ...video, embedUrl };
-        });
+        const formattedVideos = formatVideos(response.data);
         setVideos(formattedVideos);
-        setLoading(false);
       } catch (err) {
-        setError("Error fetching data");
+        setVideos(formatVideos(fallbackVideos));
+        setError("Error fetching data, displaying fallback videos");
+      } finally {
         setLoading(false);
       }
     };
@@ -47,10 +76,6 @@ const Darshan = () => {
     );
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   return (
     <>
       <div className="relative mb-4 overflow-hidden">
@@ -65,6 +90,7 @@ const Darshan = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>
       </div>
+      {error && <div className="text-red-500 text-center mb-4"></div>}
       <div className="p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {videos.map((video) => (

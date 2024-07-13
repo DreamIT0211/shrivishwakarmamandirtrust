@@ -1,9 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ImSpinner9 } from "react-icons/im";
-import { dakor } from "../../assets";
+import { dakor, h1, E1, E2, E3 } from "../../assets";
 import style from "../../style";
 import { apiConfig } from "../../Services/GlobalApi";
+
+const staticEvents = [
+  {
+    event_id: 1,
+    event_image: E1,
+    event_title: "વિશ્વકર્મા જયંતિ મહોત્સવ ",
+    event_description: "",
+  },
+  {
+    event_id: 2,
+    event_image: E2,
+    event_title: "રૂમ નવનીકરણ",
+    event_description: "",
+  },
+  {
+    event_id: 2,
+    event_image: E3,
+    event_title: "કારોબારી મિટિંગ ",
+    event_description: "",
+  },
+];
 
 const EventGallery = () => {
   const [events, setEvents] = useState([]);
@@ -19,6 +40,7 @@ const EventGallery = () => {
         setEvents(response.data);
       } catch (err) {
         setError(err.message);
+        setEvents(staticEvents); // Set static events on error
       } finally {
         setLoading(false);
       }
@@ -38,7 +60,8 @@ const EventGallery = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    // Optional: You can show an error message here if needed
+    console.error("Error fetching events:", error);
   }
 
   return (

@@ -7,6 +7,8 @@ import { apiConfig } from "../../Services/GlobalApi";
 
 const LiveDarshan = () => {
   const [videoLink, setVideoLink] = useState("");
+  const [isServerDown, setIsServerDown] = useState(false);
+  const staticVideoLink = "https://www.youtube.com/watch?v=F138ZOPITJE&ab_channel=ShriVishwakarmaMandirTrust";
 
   useEffect(() => {
     // Fetch the current video link from the database when the component mounts
@@ -14,10 +16,11 @@ const LiveDarshan = () => {
       try {
         const response = await axios.get(
           `${apiConfig.Base_Url}api/live-darshan`
-        ); // Replace with your API endpoint
+        );
         setVideoLink(response.data.video_link);
       } catch (error) {
         console.error("Error fetching video link:", error);
+        setIsServerDown(true);
       }
     };
 
@@ -26,7 +29,7 @@ const LiveDarshan = () => {
 
   return (
     <>
-     <div className="relative mb-1 overflow-hidden">
+      <div className="relative mb-1 overflow-hidden">
         <img
           src={dakor}
           alt="background image"
@@ -38,10 +41,19 @@ const LiveDarshan = () => {
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent">
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center select-none">
+      <div className="flex flex-col items-center justify-center select-none -mb-60">
         <div className="flex justify-center item center w-full h-screen">
           <div className="flex justify-center items-center bg-white rounded-lg hover:shadow-2xl w-full h-4/6 max-w-4xl overflow-hidden m-4">
-            {videoLink ? (
+            {isServerDown || !videoLink ? (
+              <ReactPlayer
+                url={staticVideoLink}
+                className="react-player"
+                playing
+                controls
+                width="100%"
+                height="100%"
+              />
+            ) : (
               <ReactPlayer
                 url={videoLink}
                 className="react-player"
@@ -50,10 +62,6 @@ const LiveDarshan = () => {
                 width="100%"
                 height="100%"
               />
-            ) : (
-              <p className="text-center font-bold py-8">
-                No live darshan available.
-              </p>
             )}
           </div>
         </div>

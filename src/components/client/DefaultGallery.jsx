@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ImSpinner9 } from "react-icons/im";
 import axios from "axios";
-import { dakor } from "../../assets";
+import { dakor, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10 } from "../../assets";
 import { apiConfig } from "../../Services/GlobalApi";
 
 export function DefaultGallery() {
@@ -11,6 +11,8 @@ export function DefaultGallery() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const defaultImages = [D1, D2, D3, D4, D5, D6, D7, D8, D9, D10];
+
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -19,6 +21,7 @@ export function DefaultGallery() {
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch images");
+        setImages(defaultImages.map((image, index) => ({ image_url: image })));
         setLoading(false);
       }
     };
@@ -60,7 +63,7 @@ export function DefaultGallery() {
       </div>
       <div className="m-4 p-4">
         {loading && <div className="text-center text-gray-500">Loading...</div>}
-        {error && <div className="text-center text-red-500">{error}</div>}
+        {error && <div className="text-center text-red-500"></div>}
         <div className="grid grid-cols-1 gap-4 mt-10 sm:grid-cols-2 md:grid-cols-3">
           {images.map((image, index) => (
             <div key={index} onClick={() => openModal(image.image_url)}>
