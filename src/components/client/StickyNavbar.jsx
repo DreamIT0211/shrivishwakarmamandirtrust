@@ -59,14 +59,14 @@ function NavList({ selectedItem, handleSelect }) {
                 {navLink.dropdown.map((dropdownItem) => (
                   <MenuItem
                     key={dropdownItem.id}
-                    className="flex items-center gap-3 rounded"
+                    className="flex items-center gap-3 rounded group"
+                    onClick={() => handleSelect(dropdownItem.id)}
                   >
                     <Typography
                       as="a"
                       href={`${dropdownItem.id}`}
                       variant="small"
-                      className={`font-normal ${style.colors.navbartext} hover:text-amber-800`}
-                      onClick={() => handleSelect(dropdownItem.id)}
+                      className={`font-normal ${style.colors.navbartext} group-hover:text-amber-800`}
                     >
                       {dropdownItem.title}
                     </Typography>

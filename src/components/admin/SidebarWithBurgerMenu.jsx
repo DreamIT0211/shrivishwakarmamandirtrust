@@ -121,53 +121,62 @@ export function SidebarWithBurgerMenu() {
                 Home page
               </ListItem>
             </Link>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <UsersIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/UserManagement"> UserManagement</Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <HomeModernIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/heromanagement"> heromanagement</Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <VideoCameraIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/LiveDarshanManagement">
+            <Link to="dashboard/UserManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <UsersIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                UserManagement
+              </ListItem>
+            </Link>
+            <Link to="dashboard/heromanagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <HomeModernIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                heromanagement
+              </ListItem>
+            </Link>
+            <Link to="dashboard/LiveDarshanManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <VideoCameraIcon className="h-5 w-5" />
+                </ListItemPrefix>
                 LiveDarshanManagement
-              </Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <FilmIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/VideoManagement"> VideoManagement</Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <CalendarDaysIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/EventManagement"> EventManagement</Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <PhotoIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/GalleryManagement"> GalleryManagement</Link>
-            </ListItem>
-            <ListItem className={`hover:${style.colors.navbarhighlight}`}>
-              <ListItemPrefix>
-                <PhotoIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              <Link to="dashboard/TrustedImagesManagement">
-                {" "}
+              </ListItem>
+            </Link>
+            <Link to="dashboard/VideoManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <FilmIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                VideoManagement
+              </ListItem>
+            </Link>
+            <Link to="dashboard/EventManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <CalendarDaysIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                EventManagement
+              </ListItem>
+            </Link>
+            <Link to="dashboard/GalleryManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <PhotoIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                GalleryManagement
+              </ListItem>
+            </Link>
+            <Link to="dashboard/TrustedImagesManagement">
+              <ListItem className={`hover:${style.colors.navbarhighlight}`}>
+                <ListItemPrefix>
+                  <PhotoIcon className="h-5 w-5" />
+                </ListItemPrefix>
                 TrustedImagesManagement
-              </Link>
-            </ListItem>
+              </ListItem>
+            </Link>
             <ListItem
               onClick={handleLogout}
               className={`hover:${style.colors.navbarhighlight}`}
