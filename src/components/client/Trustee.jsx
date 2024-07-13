@@ -12,16 +12,21 @@ import { apiConfig } from "../../Services/GlobalApi";
 const Trustees = () => {
   const [trustees, setTrustees] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchTrustees = async () => {
       try {
         const response = await fetch(`${apiConfig.Base_Url}api/trustees/cli`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
         const data = await response.json();
         setTrustees(data);
         setLoading(false);
       } catch (error) {
         console.error(error);
+        setError(true);
         setLoading(false);
       }
     };
@@ -51,39 +56,49 @@ const Trustees = () => {
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-amber-200 to-transparent"></div>
       </div>
+      <div className="bg-purple-400 font-bold text-white text-center p-1 mt-2 mb-2">
+        તા. 03-08-2022 ના રોજ જનરલ સભામાં નિયુક્ત થયેલ વ્યવસ્થાપક કમિટીના
+        હોદેદારો તથા ટ્રસ્ટ સભ્યો
+      </div>
       <div className="p-4 flex items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {trustees.map((trustee, index) => (
-            <Card className="w-80" key={index}>
-              <CardHeader floated={false} className="h-64 z-20">
-                <img
-                  src={trustee.trustee_image}
-                  alt="profile-picture"
-                  className="w-full h-full object-fit"
-                />
-                <div className="bg-red-300 h-6 w-5 z-30"></div>
-              </CardHeader>
-              <CardBody className="text-center bg-orange-50 rounded-md p-2 m-3">
-                <Typography variant="h4" color="red" className="mb-2">
-                  {trustee.trustee_title}
-                </Typography>
-                <Typography variant="h5" color="blue-gray" className="mb-2">
-                  {trustee.trustee_name}
-                </Typography>
-                <Typography
-                  color="blue-gray"
-                  className="font-bold text-blue-500"
-                  textGradient
-                >
-                  {trustee.trustee_description}
-                </Typography>
-                <Typography className="font-medium text-black" textGradient>
-                  {trustee.trustee_mobileNo}
-                </Typography>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
+        {error ? (
+          <div className="text-red-500 text-2xl h-96 text-center">
+            An error occurred while fetching data.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {trustees.map((trustee, index) => (
+              <Card className="w-80" key={index}>
+                <CardHeader floated={false} className="h-64 z-20">
+                  <img
+                    src={trustee.trustee_image}
+                    alt="profile-picture"
+                    className="w-full h-full object-fit"
+                  />
+                  <div className="bg-red-300 h-6 w-5 z-30"></div>
+                </CardHeader>
+                <CardBody className="text-center bg-orange-50 rounded-md p-2 m-3">
+                  <Typography variant="h4" color="red" className="mb-2">
+                    {trustee.trustee_title}
+                  </Typography>
+                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                    {trustee.trustee_name}
+                  </Typography>
+                  <Typography
+                    color="blue-gray"
+                    className="font-bold text-blue-500"
+                    textGradient
+                  >
+                    {trustee.trustee_description}
+                  </Typography>
+                  <Typography className="font-medium text-black" textGradient>
+                    {trustee.trustee_mobileNo}
+                  </Typography>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
