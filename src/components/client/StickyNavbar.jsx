@@ -162,7 +162,7 @@ const StickyNavbar = () => {
       </div>
       <Navbar
         className={classNames(
-          `w-full max-w-full -mt-16 lg:-mt-20 z-30 border-transparent p-3 lg:pl-2 ${style.colors.navbarbg}`,
+          `w-full max-w-full -mt-16 lg:-mt-20 z-30 border-transparent p-3 lg:pl-2 ${style.colors.navbarbg} overflow-hidden`,
           {
             "rounded-none": windowWidth >= 960 || !isNavOpen,
             "rounded-xl": windowWidth < 960 && isNavOpen,
