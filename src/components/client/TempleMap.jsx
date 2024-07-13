@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { logo } from "../../assets";
 
 const TempleMap = () => {
   useEffect(() => {
     const initMap = async () => {
       const { Map } = await google.maps.importLibrary('maps');
-      const { Marker } = await google.maps.importLibrary('marker');
-      const { Place } = await google.maps.importLibrary('places');
+      const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
 
       const map = new Map(document.getElementById('map'), {
         center: { lat: 22.75249230688784, lng: 73.15083361974744 },
@@ -14,11 +12,26 @@ const TempleMap = () => {
         mapId: '4504f8b37365c3d0',
       });
 
-      // Creating a standard marker
-      const marker = new Marker({
+      const marker = new AdvancedMarkerElement({
         position: { lat: 22.75249230688784, lng: 73.15083361974744 },
         map: map,
-        title: 'Shri Vishwakarma Mandir Trust, Dakor',
+        title: 'Shri Vishwakarma Mandir, Dakor',
+      });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: '<div>Shri Vishwakarma Mandir, Dakor</div>',
+      });
+
+      marker.addListener('click', () => {
+        window.open('https://www.google.com/maps/place/Shri+Vishwakarma+Mandir,+Dakor/@22.75249230688784,73.15083361974744', '_blank');
+      });
+
+      marker.addListener('mouseover', () => {
+        infoWindow.open(map, marker);
+      });
+
+      marker.addListener('mouseout', () => {
+        infoWindow.close();
       });
     };
 

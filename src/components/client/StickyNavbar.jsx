@@ -61,7 +61,7 @@ function NavList({ selectedItem, handleSelect }) {
                     to={`${dropdownItem.id}`}
                     key={dropdownItem.id}
                     className={`flex items-center gap-3 rounded ${style.colors.navbartext} hover:text-amber-800`}
-                    onClick={() => handleSelect(dropdownItem.id)}
+                    onClick={() => handleDropdownSelect(dropdownItem.id)}
                   >
                     <MenuItem className="flex items-center gap-3 rounded">
                       <Typography
@@ -117,6 +117,12 @@ const StickyNavbar = () => {
   const handleSelect = (id) => {
     setSelectedItem(id);
   };
+
+  const handleDropdownSelect = (id) => {
+    setSelectedItem(id);
+    setIsNavOpen(false); // Close the Collapse
+  };
+  
 
   useEffect(() => {
     const path = location.pathname.substring(1);
