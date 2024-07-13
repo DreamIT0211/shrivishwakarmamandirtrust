@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ImSpinner9 } from "react-icons/im";
 import axios from "axios";
 import { dakor } from "../../assets";
 import { apiConfig } from "../../Services/GlobalApi";
@@ -23,6 +24,16 @@ export function DefaultGallery() {
     };
     fetchImages();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 z-50 flex justify-center items-center bg-gray-900 bg-opacity-50">
+        <div className="text-amber-400 animate-spin">
+          <ImSpinner9 className="h-12 w-12" />
+        </div>
+      </div>
+    );
+  }
 
   const openModal = (image) => {
     setSelectedImage(image);
