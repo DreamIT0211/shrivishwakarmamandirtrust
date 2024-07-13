@@ -95,6 +95,7 @@ export function FooterWithSocialLinks() {
             <Typography
               as="a"
               href="https://www.facebook.com/profile.php?id=61562611431358&mibextid=LQQJ4d"
+              target="_blank"
               className="opacity-80 transition-opacity hover:opacity-100 hover:bg-light-blue-700 hover:rounded-full hover:scale-125 p-1"
             >
               <svg
@@ -113,6 +114,7 @@ export function FooterWithSocialLinks() {
             <Typography
               as="a"
               href="https://www.instagram.com/shrivishwakarmamandirdakor?igsh=YWt1YTdvOXZuajQ3"
+              target="_blank"
               className="opacity-80 transition-opacity hover:opacity-100 hover:bg-pink-400 hover:rounded-full hover:scale-125 p-1"
             >
               <svg
@@ -131,6 +133,7 @@ export function FooterWithSocialLinks() {
             <Typography
               as="a"
               href="https://www.youtube.com/@ShriVishwakarmaMandirTrust"
+              target="_blank"
               className="opacity-80 transition-opacity hover:opacity-100 hover:bg-red-600 hover:rounded-full hover:scale-125 p-1"
             >
               <svg
