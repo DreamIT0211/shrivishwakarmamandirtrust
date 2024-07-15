@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Typography } from "@material-tailwind/react";
 import {
   FaHome,
@@ -11,10 +11,11 @@ import {
   FaPhone,
 } from "react-icons/fa";
 import style from "../../style";
+import { apiConfig } from "../../Services/GlobalApi";
 
 const LINKS = [
   {
-    title: "Usefull Links",
+    title: "Useful Links",
     items: [
       { icon: <FaHome />, text: "Home", id: "Home" },
       { icon: <FaUser />, text: "Trustee", id: "Trustee" },
@@ -39,6 +40,21 @@ const LINKS = [
 const currentYear = new Date().getFullYear();
 
 export function FooterWithSocialLinks() {
+  const [visitorCount, setVisitorCount] = useState(null);
+
+  useEffect(() => {
+    const fetchVisitorCount = async () => {
+      try {
+        const response = await axios.get(`${apiConfig.Base_Url}api/site-visits`);
+        setVisitorCount(response.data.visitorCount);
+      } catch (error) {
+        console.error("Failed to fetch visitor count:", error);
+      }
+    };
+
+    fetchVisitorCount();
+  }, []);
+
   return (
     <footer
       className={`relative w-full ${style.colors.navbarbg} pt-4 ${style.colors.navbartext} mt-10 md:mt-4`}
@@ -47,7 +63,7 @@ export function FooterWithSocialLinks() {
         <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
           <Typography
             variant="h4"
-            className="mb-6 hover:text-amber-900 transition ease-in-out duration-300"
+            className="mb-6 hover:text-amber-900 transition ease-in-out duration-700"
           >
             Shri Vishwakarma Mandir Trust, Dakor
           </Typography>
@@ -64,13 +80,13 @@ export function FooterWithSocialLinks() {
                 {items.map((item, index) => (
                   <li
                     key={index}
-                    className="flex items-center hover:text-amber-900"
+                    className="flex items-center group duration-700 ease-in-out hover:text-amber-900"
                   >
                     {item.icon && <span className="mr-2">{item.icon}</span>}
                     <Typography
                       as="a"
-                      href={item.id}
-                      className={`py-1.5 font-normal transition-colors ${style.colors.navbartext} hover:text-amber-900`}
+                      href={`#${item.id}`}
+                      className={`py-1.5 font-normal transition-colors ${style.colors.navbartext} duration-700 ease-in-out group-hover:text-amber-900`}
                     >
                       {item.text}
                     </Typography>
@@ -87,7 +103,18 @@ export function FooterWithSocialLinks() {
           >
             &copy; {currentYear}{" "}
             <a href="https://vmtdakor.org/">vmtdakor.org</a>. All Rights Reserved.
+            <span className="text-black transition duration-700 ease-in-out hover:text-cyan-400">
+              &nbsp; <a href="https://www.dreamitinfotech.in/">Developed by DreamIT Infotech Pvt Ltd.</a>
+            </span>
           </Typography>
+          {visitorCount !== null && (
+            <Typography
+              variant="small"
+              className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
+            >
+              Visitor Count: {visitorCount}
+            </Typography>
+          )}
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
             <Typography
               as="a"
