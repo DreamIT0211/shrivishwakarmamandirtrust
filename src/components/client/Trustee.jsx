@@ -153,7 +153,7 @@ const Trustees = () => {
     {
       trustee_image: HITEN_PHOTO,
       trustee_title: "ટ્રસ્ટીશ્રી",
-      trustee_name: "હિતેનભાઈ રમશેભાઈ ગજ્જર",
+      trustee_name: "હિતેનભાઈ રમેશભાઈ ગજ્જર",
       trustee_description:
         "જલા પૂજન બંગ્લોઝ, એ-પ, અક્ષર ફાર્મ રોડ, આણંદ-વિદ્યાનગર રોડ, મુ. આણંદ",
       trustee_mobileNo: "મો. ૯૮ર૪૦ પ૭૯૦૮",
@@ -177,7 +177,7 @@ const Trustees = () => {
     {
       trustee_image: SURESHBHAI_PHOTO,
       trustee_title: "ટ્રસ્ટીશ્રી",
-      trustee_name: "સુરેશભાઈ મોડનભાઈ સુથાર",
+      trustee_name: "સુરેશભાઈ મોહનભાઈ સુથાર",
       trustee_description:
         "યમુનાકુંજ સાસોયટી, રામજી મંદિર સામે, મુ. ડાકોર, જી. ખેડા",
       trustee_mobileNo: "મો. ૯૮૨૫૮ ૬૧૨૬૦",
