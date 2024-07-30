@@ -19,6 +19,7 @@ import DefaultGallery  from "./DefaultGallery";
 import RoomBooking from "./RoomBooking";
 import Trustee from "./Trustee";
 import Donation from "./Donation";
+import ApkDownloadPopup from "./ApkDownloadPopup";
 
 const MainContent = () => {
   const location = useLocation();
@@ -59,6 +60,7 @@ const Main = () => {
         <div className="bottom-0 w-full mt-10">
           <FooterWithSocialLinks />
         </div>
+        <ApkDownloadPopup />
       </div>
    
   );
