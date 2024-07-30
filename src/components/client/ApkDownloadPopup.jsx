@@ -84,7 +84,7 @@ const ApkDownloadPopup = () => {
           Get the latest version of the VMT Dakor app for Android devices.
         </p>
         <a
-          href="/assets/apk/vmtdakor.apk"
+          href="https://vmtdakor.org/assets/apk/vmtdakor.apk"
           download="vmtdakor.apk"
           className="bg-purple-600 text-white px-4 py-2 rounded inline-flex items-center space-x-2 hover:bg-purple-700 hover:text-yellow-400 transition duration-300"
         >
