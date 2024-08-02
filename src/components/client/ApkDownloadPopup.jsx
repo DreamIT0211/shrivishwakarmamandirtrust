@@ -136,7 +136,7 @@ const ApkDownloadPopup = () => {
           Get the latest version of the VMT Dakor app for Android devices.
         </p>
         <a
-          href="https://drive.google.com/file/d/11tbk8WbXai1j8VTol9Me6csshTD_fZY-/view?usp=sharing"
+          href="https://drive.google.com/file/d/14TncYes9f1h3KnUZ1PIpt-vaBVZiNZu_/view?usp=sharing"
           className="bg-purple-600 text-white px-4 py-2 rounded inline-flex items-center space-x-2 hover:bg-purple-700 hover:text-yellow-400 transition duration-300"
         >
           <FaDownload size={16} />
