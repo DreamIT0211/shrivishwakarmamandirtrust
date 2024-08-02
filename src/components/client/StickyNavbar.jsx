@@ -265,7 +265,8 @@ function NavList({ selectedItem, handleSelect, handleDropdownSelect }) {
                     className={`flex items-center gap-3 rounded ${style.colors.navbartext} hover:text-amber-800`}
                     onClick={() => {
                       if (dropdownItem.id === "apk-download") {
-                        localStorage.setItem("apkPopupShown", "true");
+                        localStorage.removeItem("apkPopupShown");
+                        window.location.reload();
                       } else {
                         handleDropdownSelect(dropdownItem.id);
                       }
