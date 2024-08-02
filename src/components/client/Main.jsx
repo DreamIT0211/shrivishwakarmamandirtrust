@@ -57,10 +57,11 @@ const Main = () => {
           <StickyNavbar />
         </div>
         <MainContent />
+        <ApkDownloadPopup />
         <div className="bottom-0 w-full mt-10">
           <FooterWithSocialLinks />
         </div>
-        <ApkDownloadPopup />
+        {/* <ApkDownloadPopup /> */}
       </div>
    
   );
