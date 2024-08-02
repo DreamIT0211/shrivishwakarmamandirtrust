@@ -19,10 +19,10 @@ export const navLinks = [
         id: "darshan",
         title: "Darshan Videos",
       },
-      // {
-      //   id: "apk-download",
-      //   title: "Download APK",
-      // },
+      {
+        id: "apk-download",
+        title: "Download APK",
+      },
     ],
   },
   {
